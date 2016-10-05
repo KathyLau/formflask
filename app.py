@@ -31,7 +31,7 @@ def root():
     if request.method=="POST":
         user = request.form["username"]
         pazz = request.form["pazz"]
-        if add(user, pazz, 'auth.txt'):
+        if add(user, pazz, '/data/auth.txt'):
             return render_template("success.html", user=user)
     return render_template("index.html")
 
@@ -41,7 +41,7 @@ def login():
         if request.method=="POST":
             user = request.form["username"]
             pazz = request.form["pazz"]
-            if verify(user, pazz, "auth.txt"):
+            if verify(user, pazz, "/data/auth.txt"):
                 return "works"
             else:
                 return "no"
