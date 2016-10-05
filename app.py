@@ -42,11 +42,15 @@ def login():
             user = request.form["username"]
             pazz = request.form["pazz"]
             if verify(user, pazz, "/data/auth.txt"):
+                session["username"] = user
                 return "works"
             else:
                 return "no"
         else:
-            return render_template("login.html")
+            if "username" in session:
+                return "works"
+            else:
+                return render_template("login.html")
 
 
 if __name__ == '__main__':
