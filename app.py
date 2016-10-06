@@ -38,7 +38,7 @@ def root():
         user = request.form["username"]
         pazz = request.form["pazz"]
         if add(user, pazz, '/data/auth.txt'):
-            return render_template("success.html", user=user)
+            return redirect("login")
     else:
         return render_template("index.html")
 
@@ -51,7 +51,7 @@ def login():
             pazz = request.form["pazz"]
             if verify(user, pazz, "/data/auth.txt"):
                 session["username"] = user
-                return "works"
+                return redirect("success")
             else:
                 return "no"
         else:
@@ -59,6 +59,14 @@ def login():
                 return "works"
             else:
                 return render_template("login.html")
+
+@app.route("/success")
+def success():
+    if "username" in session:
+        return render_template("success.html")
+    else:
+        return redirect("login")
+
 
 @app.route("/logout", methods=["GET", "POST"])
 @app.route("/logout/", methods=["GET", "POST"])
