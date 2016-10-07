@@ -18,6 +18,7 @@ def add(name, pazz, file):
     f.write(name + ',' + pazz + "\n")
     return True
 
+
 def verify(name, pazz, file):
     f = open(file, 'r')
     lines = f.readlines()
@@ -32,7 +33,7 @@ def verify(name, pazz, file):
 def root():
 
     if "username" in session:
-        return redirect("login")
+        return redirect("success")
 
     if request.method=="POST":
         user = request.form["username"]
@@ -53,10 +54,10 @@ def login():
                 session["username"] = user
                 return redirect("success")
             else:
-                return "no"
+                return "No<br> Try again <a href='/login'> here</a> "
         else:
             if "username" in session:
-                return "works"
+                return "Works"
             else:
                 return render_template("login.html")
 
