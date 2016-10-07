@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, session
 import hashlib
 
 app = Flask(__name__)
-app.secret_key = 'dcb61f28eafb8771213f3e0612422b8d'
+app.secret_key = ''
 
 
 def add(name, pazz, file):
